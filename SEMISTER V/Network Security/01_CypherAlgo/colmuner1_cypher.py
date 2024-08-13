@@ -14,7 +14,7 @@ def split_array(arr: [int], size: int) -> [list]:
 
 def create_dict(matrix: [list], keyword: [str], mode: str) -> dict:
     dict = {}
-    print(matrix, keyword)
+    # print(matrix, keyword)
     if mode == "cypher":    
         for count, key in enumerate(keyword, 0):
             arr = []
@@ -35,7 +35,7 @@ def cypher(message: list, keyword: [int], length: int, mode: str) -> str:
     # print("-----", matrix)
 
     dict = create_dict(matrix, keyword, mode)
-    print(dict)
+    # print(dict)
     
     if mode == "cypher":
         message = ""
