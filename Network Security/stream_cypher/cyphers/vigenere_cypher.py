@@ -54,17 +54,14 @@ def cypher(message: list, key: list, mode: str) -> str:
     return ''.join(cypher)
 
 
-message = str(input("Enter a message: ").upper())
-key = str(input("Enter a key: ").upper())
-print("message: ", message, "key: ", key)
+# message = str(input("Enter a message: ").upper())
+# key = str(input("Enter a key: ").upper())
+# print("message: ", message, "key: ", key)
 
-cypher_message = cypher(list(message), list(key), "cypher")
-print("cyphered: ", cypher_message)
+# cypher_message = cypher(list(message), list(key), "cypher")
+# print("cyphered: ", cypher_message)
 
-print("Sending message...")
+# print("Sending message...")
 
-decyper_message = cypher(list(cypher_message), list(key), "decypher")
-print("decyphered: ", decyper_message)
-
-
-__all__ = [ "cypher" ]
+# decyper_message = cypher(list(cypher_message), list(key), "decypher")
+# print("decyphered: ", decyper_message)

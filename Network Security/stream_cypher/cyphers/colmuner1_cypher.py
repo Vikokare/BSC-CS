@@ -53,21 +53,18 @@ def cypher(message: list, keyword: [int], length: int, mode: str) -> str:
     return message, len(matrix)
 
 
-message = str(input("Enter a message: "))
-while True:
-    keyword = str(input("Enter a key: "))
-    if len(keyword) < len(message):
-        break
-    print(f"Key must be less that the length of the {len(message)}, Please enter key again...")
-print("message: ", message, " key: ", keyword)
+# message = str(input("Enter a message: "))
+# while True:
+#     keyword = str(input("Enter a key: "))
+#     if len(keyword) < len(message):
+#         break
+#     print(f"Key must be less that the length of the {len(message)}, Please enter key again...")
+# print("message: ", message, " key: ", keyword)
 
-cypher_message, length = cypher(list(message), list(keyword), len(keyword), "cypher")
-print("cyphered: ", cypher_message)
+# cypher_message, length = cypher(list(message), list(keyword), len(keyword), "cypher")
+# print("cyphered: ", cypher_message)
 
-print("Sending message...")
+# print("Sending message...")
 
-decyper_message, length = cypher(list(cypher_message), list(keyword), length, "decypher")
-print("decyphered: ", decyper_message)
-
-
-__all__ = [ "cypher" ]
+# decyper_message, length = cypher(list(cypher_message), list(keyword), length, "decypher")
+# print("decyphered: ", decyper_message)

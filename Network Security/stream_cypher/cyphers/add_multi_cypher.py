@@ -10,7 +10,7 @@ def create_dict() -> dict:
     return dict
 
 
-def get_key(ascii: [int]) -> str:
+def get_key(ascii: [int], dict) -> str:
     for i in range(len(ascii)):
         for key, value in dict.items():
             if value == ascii[i]:
@@ -19,6 +19,7 @@ def get_key(ascii: [int]) -> str:
 
 
 def cypher(message: str, add_key: int, mul_key: int, mode: str) -> str:
+    dict = create_dict()
     msg_num = [ dict.get(i) for i in message ]
     length = len(dict)
 
@@ -28,28 +29,23 @@ def cypher(message: str, add_key: int, mul_key: int, mode: str) -> str:
         mul_key_inverse = pow(mul_key, -1, 26)
         cypher_num = [ ((num * mul_key_inverse) - add_key ) % length for num in msg_num]
     
-    return get_key(cypher_num)
+    return get_key(cypher_num, dict)
 
 
 
-dict = create_dict()
-message = input("Enter a message: ").upper()
-add_key = int(input("Enter a add key: "))
-while True:
-    mul_key = int(input("Enter a mul key: "))
-    if mul_key in [3, 5, 7, 9]:
-        break
-    print(f"Key must be [3, 5, 7, 9], Please enter key again...")
-print("message: ", message, "add key: ", add_key, "mul key: ", mul_key)
+# message = input("Enter a message: ").upper()
+# add_key = int(input("Enter a add key: "))
+# while True:
+#     mul_key = int(input("Enter a mul key: "))
+#     if mul_key in [3, 5, 7, 9]:
+#         break
+#     print(f"Key must be [3, 5, 7, 9], Please enter key again...")
+# print("message: ", message, "add key: ", add_key, "mul key: ", mul_key)
 
-cypher_message = cypher(list(message), add_key, mul_key, "cypher")
-print("cyphered: ", cypher_message)
+# cypher_message = cypher(list(message), add_key, mul_key, "cypher")
+# print("cyphered: ", cypher_message)
 
-print("Sending message...")
+# print("Sending message...")
 
-decyper_message = cypher(list(cypher_message), add_key, mul_key, "decypher")
-print("decyphered: ", decyper_message)
-
-
-
-__all__ = [ "cypher" ]
+# decyper_message = cypher(list(cypher_message), add_key, mul_key, "decypher")
+# print("decyphered: ", decyper_message)

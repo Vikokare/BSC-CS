@@ -10,7 +10,7 @@ def create_dict() -> dict:
     return dict
 
 
-def get_key(ascii: [int]) -> str:
+def get_key(ascii: [int], dict) -> str:
     for i in range(len(ascii)):
         for key, value in dict.items():
             if value == ascii[i]:
@@ -19,6 +19,7 @@ def get_key(ascii: [int]) -> str:
 
 
 def cypher(message: str, key: int, mode: str) -> str:
+    dict = create_dict()
     msg_num = [ dict.get(i) for i in message ]
     length = len(dict)
 
@@ -28,24 +29,21 @@ def cypher(message: str, key: int, mode: str) -> str:
         key_inverse = pow(key, -1, 26)
         cypher_num = [ (num * key_inverse) % length for num in msg_num]
     
-    return get_key(cypher_num)
+    return get_key(cypher_num, dict)
 
 
-dict = create_dict()
-message = input("Enter a message: ").upper()
-while True:
-    key = int(input("Enter a key: "))
-    if key in [3, 5, 7, 9]:
-        break
-print("message: ", message, "key: ", key)
 
-cypher_message = cypher(list(message), key, "cypher")
-print("cyphered: ", cypher_message)
+# message = input("Enter a message: ").upper()
+# while True:
+#     key = int(input("Enter a key: "))
+#     if key in [3, 5, 7, 9]:
+#         break
+# print("message: ", message, "key: ", key)
 
-print("Sending message...")
+# cypher_message = cypher(list(message), key, "cypher")
+# print("cyphered: ", cypher_message)
 
-decyper_message = cypher(list(cypher_message), key, "decypher")
-print("decyphered: ", decyper_message)
+# print("Sending message...")
 
-
-__all__ = [ "cypher" ]
+# decyper_message = cypher(list(cypher_message), key, "decypher")
+# print("decyphered: ", decyper_message)

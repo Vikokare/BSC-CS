@@ -106,15 +106,13 @@ def cypher(message: list, keyword: str, mode: str) -> str:
 
     return final_string
 
-message = str(input("Enter a message: "))
-keyword = str(input("Enter a key: "))
-cypher_message = cypher(list(message), keyword, "cypher")
-print("cyphered: ", cypher_message)
+# message = str(input("Enter a message: "))
+# keyword = str(input("Enter a key: "))
+# cypher_message = cypher(list(message), keyword, "cypher")
+# print("cyphered: ", cypher_message)
 
-print("Sending message...")
+# print("Sending message...")
 
-decyper_message = cypher(list(cypher_message), keyword, "decypher")
-print("decyphered: ", decyper_message.replace('z', ''))
+# decyper_message = cypher(list(cypher_message), keyword, "decypher")
+# print("decyphered: ", decyper_message.replace('z', ''))
 
-
-__all__ = [ "cypher" ]

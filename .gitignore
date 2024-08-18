@@ -9,6 +9,7 @@ Include/
 Lib/
 Scripts/
 share/
+__pycache__
 
 # Ignore virtual environment configuration file
 pyvenv.cfg
