@@ -9,6 +9,7 @@ def create_dict() -> dict:
 
     return dict
 
+
 def get_key(ascii: [int]) -> str:
     for i in range(len(ascii)):
         for key, value in dict.items():
@@ -29,6 +30,8 @@ def cypher(message: str, add_key: int, mul_key: int, mode: str) -> str:
     
     return get_key(cypher_num)
 
+
+
 dict = create_dict()
 message = input("Enter a message: ").upper()
 add_key = int(input("Enter a add key: "))
@@ -46,3 +49,7 @@ print("Sending message...")
 
 decyper_message = cypher(list(cypher_message), add_key, mul_key, "decypher")
 print("decyphered: ", decyper_message)
+
+
+
+__all__ = [ "cypher" ]

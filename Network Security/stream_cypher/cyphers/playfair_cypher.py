@@ -115,3 +115,6 @@ print("Sending message...")
 
 decyper_message = cypher(list(cypher_message), keyword, "decypher")
 print("decyphered: ", decyper_message.replace('z', ''))
+
+
+__all__ = [ "cypher" ]

@@ -1,3 +1,14 @@
-ignore pdf / docx
+# Ignore pdf / docx
 *.pdf
 *.docx
+
+
+# Ignore virtual environment directories
+etc/
+Include/
+Lib/
+Scripts/
+share/
+
+# Ignore virtual environment configuration file
+pyvenv.cfg

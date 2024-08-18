@@ -12,6 +12,7 @@ def split_array(arr: [int], size: int) -> [list]:
         
     return final_array
 
+
 def cypher(message: str, key: int, mode: str) -> str:
 
     matrix = split_array(message, key)
@@ -31,6 +32,7 @@ def cypher(message: str, key: int, mode: str) -> str:
     return ''.join(message), len(matrix)
 
 
+
 message = input("Enter a message: ")
 while True:
     key = int(input("Enter a key: "))
@@ -47,3 +49,7 @@ print("Sending message...")
 
 decyper_message, key = cypher(list(cypher_message), key, "decypher")
 print("decyphered: ", decyper_message)
+
+
+
+__all__ = [ "cypher" ]

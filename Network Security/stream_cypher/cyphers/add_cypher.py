@@ -40,3 +40,5 @@ print("Sending message...")
 
 decyper_message = cypher(list(cypher_message), key, "decypher")
 print("decyphered: ", decyper_message)
+
+__all__ = [ "cypher" ]
