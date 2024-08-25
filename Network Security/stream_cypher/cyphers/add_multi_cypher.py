@@ -29,7 +29,7 @@ def cypher(message: str, add_key: int, mul_key: int, mode: str) -> str:
         mul_key_inverse = pow(mul_key, -1, 26)
         cypher_num = [ ((num * mul_key_inverse) - add_key ) % length for num in msg_num]
     
-    return get_key(cypher_num, dict)
+    return ''.join(get_key(cypher_num, dict))
 
 
 

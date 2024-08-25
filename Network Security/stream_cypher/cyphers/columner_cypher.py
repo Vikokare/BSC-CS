@@ -7,7 +7,7 @@ def split_array(arr: [int], size: int) -> [list]:
     final_array.append(arr)
 
     for array in final_array:
-        while len(array) != key:
+        while len(array) != size:
             array.extend("#")
         
     return final_array
