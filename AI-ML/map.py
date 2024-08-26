@@ -3,12 +3,12 @@ import pandas as pd
 
 header = ["Devgad", "Malvan", "Oros", "Kudal", "Vengurla", "Sawantawadi"]
 map = {
-    "Devgad": [ "Malvan" ],
-    "Malvan": [ "Devgad", "Oros", "Vengurla" ],
-    "Oros": [ "Malvan", "Kudal"],
-    "Kudal": [ "Oros", "Vengurla", "Sawantawadi" ],
-    "Vengurla": [ "Malvan", "Kudal", "Sawantawadi" ],
-    "Sawantawadi": [ "Kudal", "Vengurla" ],
+    "Devgad":       [ "Malvan" ],
+    "Malvan":       [ "Devgad", "Oros", "Vengurla" ],
+    "Oros":         [ "Malvan", "Kudal"],
+    "Kudal":        [ "Oros", "Vengurla", "Sawantawadi" ],
+    "Vengurla":     [ "Malvan", "Kudal", "Sawantawadi" ],
+    "Sawantawadi":  [ "Kudal", "Vengurla" ],
 }
 print(map)
 
@@ -21,11 +21,13 @@ def brute_force(map, current, destination):
     search_stack = []
 
     while current != destination:
+
         print(' -> '.join(route))
+        
         if destination in map[current]:
             route.append(destination)
-            print("++")
             break
+        
         for place in map[current]:
             if place not in visited_places:
                 print("-", place)
@@ -36,7 +38,6 @@ def brute_force(map, current, destination):
 
         current = search_stack.pop(0)
         visited_places.append(current)
-
         route.append(current)
     
     print(' -> '.join(route))
@@ -48,14 +49,14 @@ for count, place in enumerate(header):
     print(f"{count}: {place}")
 
 while True:
-    current = 0 #(input("Enter the current cord: "))
+    current = int(input("Enter the current cord: "))
     if current < len(header):
         current = header[current]
         break
     print("Please, Try again...")
 
 while True:
-    destination = 5 #int(input("Enter the destination cord: "))
+    destination = int(input("Enter the destination cord: "))
     if destination < len(header):
         destination = header[destination]
         break
