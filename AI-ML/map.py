@@ -13,8 +13,7 @@ map = {
 print(map)
 
 
-
-def brute_force(map, current, destination):
+def breath_search(map, current, destination):
 
     route = [current]
     visited_places = [current]
@@ -43,20 +42,44 @@ def brute_force(map, current, destination):
     print(' -> '.join(route))
 
 
+def depth_search(map, current, destination):
+
+    search_stack = [current]
+    route = [current]
+
+    # while current != destination:
+    for i in range(5):    
+        print(' -> '.join(route))
+        
+        if destination in map[current]:
+            route.append(destination)
+            # break
+
+        for place in map[current]:
+            if place not in search_stack:
+                print("--", place)
+                search_stack.append(place)
+        
+        print(search_stack)
+        current = search_stack.pop()
+    
+
+
+
 
 print("\nselect the currect place and destination: ")
 for count, place in enumerate(header):
     print(f"{count}: {place}")
 
 while True:
-    current = int(input("Enter the current cord: "))
+    current = 0 #int(input("Enter the current cord: "))
     if current < len(header):
         current = header[current]
         break
     print("Please, Try again...")
 
 while True:
-    destination = int(input("Enter the destination cord: "))
+    destination = 5 #int(input("Enter the destination cord: "))
     if destination < len(header):
         destination = header[destination]
         break
@@ -65,5 +88,5 @@ while True:
 print(f"Searching a route from {current} to {destination}")
 
 
-
-brute_force(map, current, destination)
+# breath_search(map, current, destination)
+depth_search(map, current, destination)
