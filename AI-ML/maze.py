@@ -1,72 +1,65 @@
+import heapq
 import pandas as pd
 
 maze = [
-    ['A', ' ', ' ', ' ', ' '],
-    ['*', ' ', '*', '*', ' '],
-    ['*', ' ', ' ', '*', ' '],
-    ['*', '*', ' ', '*', ' '],
-    ['*', '*', ' ', ' ', 'B']
+    ['A', '*', ' ', ' ', 'B'],
+    [' ', ' ', ' ', '*', '*'],
+    [' ', ' ', ' ', '*', '*'],
+    [' ', '*', ' ', '*', '*'],
+    [' ', ' ', ' ', '*', '*']
 ]
 print(pd.DataFrame(maze))
 
-# Handle out of range index
-# handle multiple path
+# Heuristic function (Manhattan Distance)
+def heuristic(current, goal):
+    return abs(current[0] - goal[0]) + abs(current[1] - goal[1])
 
-def get_current_position(maze):
+
+# Find the position of 'A' and 'B'
+def find_position(maze, symbol):
     for i in range(len(maze)):
         for j in range(len(maze[0])):
-            if 'A' == maze[i][j]:
-                print(maze[i][j], i, j)
-                return i, j
+            if maze[i][j] == symbol:
+                return (i, j)
 
 
-def route(maze, current_index):
+# A* algorithm
+def a_star(maze, start, goal):
+    heap_list = []
+    heapq.heappush(heap_list, (0, start))
+    traces = {}
+    g_score = {start: 0}
 
-    count = 1
-    while True:
+    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 
-        row, col = current_index
-        print(row, col)
+    while heap_list:
+        current_f, current_pos = heapq.heappop(heap_list)
+        row, col = current_pos
+
+        if current_pos == goal:
+            print("Goal Reached!")
+            reconstruct_path(maze, traces, current_pos)
+            return
         
-        if (row > 0 and maze[row - 1][col] == 'B') or (row < 4 and maze[row + 1][col] == 'B') or (col > 0 and maze[row][col - 1] == 'B') or (col < 4 and maze[row][col + 1] == 'B'):
-            print("You escaped my clutches, Lucky Bastard...")
-            break
+        for d in directions:
+            neighbor_pos = (neighbor_row, neighbor_col) = row + d[0], col + d[1]
+            
+            if 0 <= neighbor_row <= len(maze) and 0 <= neighbor_col <= len(maze) and maze[neighbor_row][neighbor_col] != '*':
+                tentative_g_score = g_score[current_pos] + 1
 
-        
-        # Moving Up
-        if row > 0 and maze[row - 1][col] == ' ':
-            print("Moving Up")
-            maze[row][col], maze[row - 1][col] = count, maze[row][col]
-            current_index = row - 1, col
+                if neighbor_pos not in g_score or tentative_g_score < g_score[neighbor_pos]:
+                    g_score[neighbor_pos] = tentative_g_score
+                    f_score = tentative_g_score + heuristic(neighbor_pos, goal)
+                    heapq.heappush(heap_list, (f_score, neighbor_pos))
+                    traces[neighbor_pos] = current_pos
 
-        # Moving Down
-        elif row < 4 and maze[row + 1][col] == ' ':
-            print("Moving Down")
-            maze[row][col], maze[row + 1][col] = count, maze[row][col]
-            current_index = row + 1, col
 
-        # Moving Left
-        elif col > 0 and maze[row][col - 1] == ' ':
-            print("Moving Left")
-            maze[row][col], maze[row][col - 1] = count, maze[row][col]
-            current_index = row, col - 1
-
-        # Moving Right
-        elif col < 4 and maze[row][col + 1] == ' ':
-            print("Moving Right")
-            maze[row][col], maze[row][col + 1] = count, maze[row][col]
-            current_index = row, col + 1
-
-        else:
-            print("You are stuck forever :(")
-            break
-
-        count = count + 1
-
+def reconstruct_path(maze, traces, current_pos):
+    while current_pos in traces:
+        current_pos = traces[current_pos]
+        maze[current_pos[0]][current_pos[1]] = '•'
+    maze[current_pos[0]][current_pos[1]] = 'A'
     print(pd.DataFrame(maze))
 
-current_index = get_current_position(maze)
 
-route(maze, current_index)
-
-
+a_star(maze, find_position(maze, 'A'), find_position(maze, 'B'))

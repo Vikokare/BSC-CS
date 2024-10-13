@@ -1,7 +1,7 @@
 # Ignore pdf / docx
 *.pdf
 *.docx
-
+!Linux Server Administration/*
 
 # Ignore virtual environment directories
 etc/
@@ -13,3 +13,9 @@ __pycache__
 
 # Ignore virtual environment configuration file
 pyvenv.cfg
+
+# Virtual Environment
+venv
+
+# Environment Variables
+.env
