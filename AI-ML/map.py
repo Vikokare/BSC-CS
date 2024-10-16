@@ -25,7 +25,7 @@ def breath_first_search(current, destination):
             if neighbor not in search_stack and neighbor not in visited_places:
                 search_stack.append(neighbor)
                 parent_map[neighbor] = current
-    print(parent_map)
+    # print(parent_map)
 
     if destination in parent_map:
         route = [destination]
@@ -55,7 +55,7 @@ def depth_first_search(current, destination):
             if neighbor not in search_stack and neighbor not in visited_places:
                 search_stack.append(neighbor)
                 parent_map[neighbor] = current
-    print(parent_map)
+    # print(parent_map)
 
     if destination in parent_map:
         route = [destination]
@@ -69,4 +69,4 @@ def depth_first_search(current, destination):
     print(" --> ".join(route))
 
 breath_first_search('Sawantawadi', 'Devgad')
-# depth_first_search('Devgad', 'Sawantawadi')
+depth_first_search('Devgad', 'Sawantawadi')

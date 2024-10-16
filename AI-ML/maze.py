@@ -2,10 +2,10 @@ import heapq
 import pandas as pd
 
 maze = [
-    ['A', '*', ' ', ' ', 'B'],
-    [' ', ' ', ' ', '*', '*'],
-    [' ', ' ', ' ', '*', '*'],
-    [' ', '*', ' ', '*', '*'],
+    ['A', ' ', ' ', ' ', ' '],
+    [' ', '*', '*', '*', ' '],
+    [' ', '*', ' ', ' ', ' '],
+    [' ', '*', 'B', '*', '*'],
     [' ', ' ', ' ', '*', '*']
 ]
 print(pd.DataFrame(maze))
@@ -44,7 +44,7 @@ def a_star(maze, start, goal):
         for d in directions:
             neighbor_pos = (neighbor_row, neighbor_col) = row + d[0], col + d[1]
             
-            if 0 <= neighbor_row <= len(maze) and 0 <= neighbor_col <= len(maze) and maze[neighbor_row][neighbor_col] != '*':
+            if 0 <= neighbor_row < len(maze) and 0 <= neighbor_col < len(maze) and maze[neighbor_row][neighbor_col] != '*':
                 tentative_g_score = g_score[current_pos] + 1
 
                 if neighbor_pos not in g_score or tentative_g_score < g_score[neighbor_pos]:
