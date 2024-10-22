@@ -18,7 +18,6 @@ def get_key(ascii: [int], dict) -> str:
 
 
 def cypher(message: str, key: int, mode: str) -> str:
-
     dict = create_dict()
 
     msg_num = [ dict.get(i) for i in message ]
