@@ -3,7 +3,7 @@ import sys
 import random
 import math
 import ast
-
+ 
 def generate_primes(limit):
     sieve = [True] * limit
     sieve[0] = sieve[1] = False
@@ -16,7 +16,7 @@ def generate_primes(limit):
 def pick_random_prime(primes):
     prime_list = list(primes)
     random.shuffle(prime_list)
-    return random.choice(list(prime_list))
+    return random.choice(prime_list)
 
 def choose_e(fi):
     e = 2
